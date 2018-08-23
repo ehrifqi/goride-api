@@ -1,7 +1,13 @@
 Member.delete_all
+Driver.delete_all
 
 Member.create({
-  email: "christyantofernando@gmail.com",
-  username: "christyantofernando",
-  password: "christyantofernando"
+  email: "member@gmail.com",
+  username: "member",
+  password: "member"
+})
+
+Driver.create({
+  email: "driver@gmail.com",
+  password: "driver"
 })
