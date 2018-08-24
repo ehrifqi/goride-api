@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_24_031530) do
+ActiveRecord::Schema.define(version: 2018_08_24_120824) do
 
   create_table "drivers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "full_name"
-    t.integer "age"
     t.datetime "birthdate"
     t.string "license_plate"
     t.decimal "rating"
@@ -34,6 +33,11 @@ ActiveRecord::Schema.define(version: 2018_08_24_031530) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "phone_number"
+    t.integer "license_number"
+    t.integer "ktp_number"
+    t.string "address"
+    t.integer "income"
     t.index ["email"], name: "index_drivers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true
   end
@@ -56,6 +60,9 @@ ActiveRecord::Schema.define(version: 2018_08_24_031530) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "phone_number"
+    t.integer "go_pay_value"
+    t.integer "go_point_value"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
