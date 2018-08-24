@@ -1,6 +1,7 @@
 class Api::V1::Auth::MembersAuthController < ApplicationController
   def login
     email = params[:email]
+    # username harusnya dihapus karena udah dihapus dari table
     username = params[:username]
     password = params[:password]
 
