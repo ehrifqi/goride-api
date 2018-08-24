@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_23_141906) do
+ActiveRecord::Schema.define(version: 2018_08_24_031530) do
 
   create_table "drivers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -41,10 +41,7 @@ ActiveRecord::Schema.define(version: 2018_08_23_141906) do
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "username"
     t.string "full_name"
-    t.integer "age"
-    t.datetime "birthdate"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

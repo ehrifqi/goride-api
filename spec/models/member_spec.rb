@@ -25,22 +25,6 @@ RSpec.describe Member, type: :model do
     expect(@member1).to_not be_valid
   end
 
-  it "is valid with a username" do
-    expect(@member1).to be_valid
-  end
-
-  it "is valid with no username" do
-    @member1.username = nil
-    @member2.username = ""
-    expect(@member1).to be_valid
-    expect(@member2).to be_valid
-  end
-
-  it "is invalid with a username with length greater than 30" do
-    @member1.username = "toolongusernamethismustwillnotpass"
-    expect(@member1).to_not be_valid
-  end
-
   it "is invalid with password length lower than 6 or greater than 20" do
     @member1.password = "short"
     expect(@member1).to_not be_valid

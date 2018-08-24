@@ -6,5 +6,4 @@ class Member < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, length: {in: 6..20}
-  validates :username, length: {maximum: 30}, allow_blank:true
 end
