@@ -1,5 +1,6 @@
 Member.delete_all
 Driver.delete_all
+Driver_Detail.delete_all
 
 Member.create({
   email: "member@gmail.com",
@@ -23,4 +24,10 @@ Driver.create({
   ktp_number: "1234567890123456",
   address: "Syahdan baru",
   income: 0
+})
+
+Driver_Detail.create({
+  curr_lat: 12.1234,
+  curr_long: 132.123,
+  is_active: true
 })

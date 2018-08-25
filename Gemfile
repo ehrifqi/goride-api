@@ -14,7 +14,10 @@ gem 'jwt'
 
 group :development, :test do
   gem 'faker', "~> 1.9.1"
-  gem 'sqlite3'
+  
+  # khusus adit karena di kompinya, ada error di sqlite, kalau misalnya di kompi kalian ada masalah, hapus mulai dari ", git: ..." sampai habis
+  gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
+  
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', ">= 3.4.4"
   gem 'factory_girl_rails', "~> 4.4.1"
