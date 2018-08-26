@@ -9,7 +9,7 @@ class Api::V1::Auth::MembersAuthController < ApplicationController
     if member&.valid_password?(password)
       render json: {
         token: generate_token({id: member.id, role: Rails.application.secrets.role_member}),
-        member: member.as_json(only: [:email, :member_id])
+        member: member.as_json(only: [:email, :id])
       }, status: :created
     else
       # head(:unauthorized)
