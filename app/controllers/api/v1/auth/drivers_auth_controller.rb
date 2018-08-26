@@ -39,7 +39,7 @@ class Api::V1::Auth::DriversAuthController < ApplicationController
                 driver: driver.as_json(only: [:email, :driver_id])
             },status: :created
         else
-            # head(:unauthorized)
+            # head(:bad_request)
             render err("Register Failed", :bad_request)
         end
     end
