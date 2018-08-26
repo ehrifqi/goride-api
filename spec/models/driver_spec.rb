@@ -68,4 +68,6 @@ RSpec.describe Driver, type: :model do
     @driver1.address = nil
     expect(@driver1).to_not be_valid
   end
+
+  # belom ditest associationnya
 end

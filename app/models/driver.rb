@@ -12,4 +12,6 @@ class Driver < ApplicationRecord
   validates :license_number, presence: true, length: {is: 12}
   validates :ktp_number, presence: true, length: {is: 16}
   validates :address, presence: true
+
+  has_one :driver_detail
 end
