@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         end
         scope 'drivers_auth', as: 'drivers' do
           post 'login', to: 'drivers_auth#login'
+          post 'register', to: 'drivers_auth#register'
         end
       end
     end
