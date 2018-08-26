@@ -7,7 +7,7 @@ class Api::V1::Auth::DriversAuthController < ApplicationController
     	if driver&.valid_password?(password)
     		render json: {
     			token: generate_token({id: driver.id, role: Rails.application.secrets.role_driver}),
-    			driver: driver.as_json(only: [:email, :driver_id])
+    			driver: driver.as_json(only: [:email, :id])
     		},status: :created
     	else
     		# head(:unauthorized)
@@ -28,7 +28,10 @@ class Api::V1::Auth::DriversAuthController < ApplicationController
         address = params[:address]
         income = 0
 
-        driver = Driver.new(email: email, password: password, full_name: full_name,
+        driver = Driver.new(
+          email: email, 
+          password: password,     
+          full_name: full_name,
             birthdate: birthdate,license_plate: license_plate, rating: rating,
             phone_number: phone_number, license_number: license_number, ktp_number: ktp_number,
             address: address, income: income)
@@ -36,7 +39,7 @@ class Api::V1::Auth::DriversAuthController < ApplicationController
             driver.save
             render json: {
                 token: generate_token({id: driver.id, role: Rails.application.secrets.role_driver}),
-                driver: driver.as_json(only: [:email, :driver_id])
+                driver: driver.as_json(only: [:email, :id])
             },status: :created
         else
             # head(:unauthorized)
