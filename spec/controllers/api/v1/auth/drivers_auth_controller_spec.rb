@@ -23,5 +23,28 @@ RSpec.describe Api::V1::Auth::DriversAuthController, type: :controller do
       token_compare = JsonWebToken.generate_token({id: @driver.id, role: Rails.application.secrets.role_driver})[:access_token]
       expect(token).to eq(token_compare)
   	end
+
+    it "returns HTTP 400 (bad_request) on unsuccessful register" do
+      post 'register', params: {email: @driver.email, password: @driver.password, full_name: "Mamang Modip",
+            birthdate: "26-08-1990",license_plate: "B 123 YOI", phone_number: "123456789012", license_number: "123456789012",
+            ktp_number: "1234567890123456",address: "Syahdan 1"}
+      expect(response.status).to eq(400)
+    end
+
+    it "returns a valid token on successful register" do
+      post 'register', params: {email: "driver@driver.com", password: "driverdriver", full_name: "Mamang Modip",
+            birthdate: "26-08-1990",license_plate: "B 123 YOI", phone_number: "123456789012", license_number: "123456789012",
+            ktp_number: "1234567890123456",address: "Syahdan 1"}
+      expect(response.status).to eq(201)
+    end
+
+    it "returns a valid token on successful register" do
+      post 'register', params: {email: "driver@driver.com", password: "driverdriver", full_name: "Mamang Modip",
+            birthdate: "26-08-1990",license_plate: "B 123 YOI", phone_number: "123456789012", license_number: "123456789012",
+            ktp_number: "1234567890123456",address: "Syahdan 1"}
+      token = response_json["token"]["access_token"]
+      token_compare = JsonWebToken.generate_token({id: 2, role: Rails.application.secrets.role_driver})[:access_token]
+      expect(token).to eq(token_compare)
+    end
   end
 end
