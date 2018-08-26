@@ -5,6 +5,6 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password { Faker::String.random(10)}
     full_name {Faker::Name.name}
-    phone_number {Faker::Number.number(12)}
+    phone_number {Faker::String.random(12)}
   end
 end
