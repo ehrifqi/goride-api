@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_25_155958) do
+ActiveRecord::Schema.define(version: 2018_08_27_215926) do
 
   create_table "driver_details", force: :cascade do |t|
     t.decimal "curr_lat"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2018_08_25_155958) do
     t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "driver_id"
+    t.index ["driver_id"], name: "index_driver_details_on_driver_id"
   end
 
   create_table "drivers", force: :cascade do |t|
