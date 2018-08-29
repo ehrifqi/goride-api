@@ -12,6 +12,8 @@ gem 'devise'
 
 gem 'jwt'
 
+gem 'activerecord-reset-pk-sequence'
+
 group :development, :test do
   gem 'faker', "~> 1.9.1"
   
