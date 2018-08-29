@@ -1,6 +1,11 @@
 Member.delete_all
+Member.reset_pk_sequence
 Driver.delete_all
+Driver.reset_pk_sequence
 DriverDetail.delete_all
+DriverDetail.reset_pk_sequence
+OrderStatus.delete_all
+OrderStatus.reset_pk_sequence
 
 Member.create({
   email: "member@gmail.com",
@@ -19,7 +24,6 @@ Driver.create({
   license_plate: "B1511BNZ",
   rating: 4.9,
   phone_number: "08561657562",
-  license_plate: "B 1672 BNZ",
   license_number: "123456789012",
   ktp_number: "1234567890123456",
   address: "Syahdan baru",
@@ -31,3 +35,12 @@ DriverDetail.create({
   curr_long: 132.123,
   is_active: true
 })
+
+OrderStatus.create([
+  { status: 'Pending'},
+  { status: 'Accepted'},
+  { status: 'Picked Up'},
+  { status: 'Arrived'},
+  { status: 'Canceled by Driver'},
+  { status: 'Canceled by Member'}
+])

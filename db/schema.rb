@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_215926) do
+ActiveRecord::Schema.define(version: 2018_08_29_100402) do
 
   create_table "driver_details", force: :cascade do |t|
     t.decimal "curr_lat"
@@ -75,6 +75,10 @@ ActiveRecord::Schema.define(version: 2018_08_27_215926) do
     t.integer "go_point_value"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "order_statuses", force: :cascade do |t|
+    t.string "status"
   end
 
 end
