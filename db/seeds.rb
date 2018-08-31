@@ -6,6 +6,10 @@ DriverDetail.delete_all
 DriverDetail.reset_pk_sequence
 OrderStatus.delete_all
 OrderStatus.reset_pk_sequence
+ActiveBook.delete_all
+ActiveBook.reset_pk_sequence
+BookHistory.delete_all
+BookHistory.reset_pk_sequence
 
 Member.create({
   email: "member@gmail.com",
