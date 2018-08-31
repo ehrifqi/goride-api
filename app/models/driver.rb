@@ -14,4 +14,6 @@ class Driver < ApplicationRecord
   validates :address, presence: true
 
   has_one :driver_detail
+  has_one :active_book
+  has_many :book_history
 end

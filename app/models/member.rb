@@ -10,4 +10,6 @@ class Member < ApplicationRecord
   validates :phone_number, presence: true, length: {in: 11..13}
 
   has_one :member_detail
+  has_one :active_book
+  has_many :book_history
 end
