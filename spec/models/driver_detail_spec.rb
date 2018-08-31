@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe DriverDetail, type: :model do
   before :each do
-    @driver_detail1 = create(:driver_detail)
+    @driver_detail1 = build(:driver_detail)
     @driver_detail2 = create(:driver_detail)
   end
 

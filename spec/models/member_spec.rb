@@ -49,4 +49,6 @@ RSpec.describe Member, type: :model do
     @member1.phone_number = 12345678901
     expect(@member1).to be_valid
   end
+
+  # belom ditest associationnya
 end

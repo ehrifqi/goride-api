@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_29_100402) do
+ActiveRecord::Schema.define(version: 2018_08_31_154716) do
+
+  create_table "active_books", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "driver_id"
+    t.integer "status_id"
+    t.decimal "src_lat"
+    t.decimal "src_long"
+    t.decimal "dest_lat"
+    t.decimal "dest_long"
+    t.integer "price"
+    t.string "from"
+    t.string "to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "book_histories", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "driver_id"
+    t.integer "status_id"
+    t.decimal "src_lat"
+    t.decimal "src_long"
+    t.decimal "dest_lat"
+    t.decimal "dest_long"
+    t.integer "price"
+    t.string "from"
+    t.string "to"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "driver_details", force: :cascade do |t|
     t.decimal "curr_lat"
@@ -50,6 +81,15 @@ ActiveRecord::Schema.define(version: 2018_08_29_100402) do
     t.integer "income"
     t.index ["email"], name: "index_drivers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true
+  end
+
+  create_table "member_details", force: :cascade do |t|
+    t.decimal "curr_lat"
+    t.decimal "curr_long"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "member_id"
+    t.index ["member_id"], name: "index_member_details_on_member_id"
   end
 
   create_table "members", force: :cascade do |t|
