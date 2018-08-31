@@ -10,7 +10,7 @@ class BookHistory < ApplicationRecord
   validates :price, presence: true
   validates :from, presence: true
   validates :to, presence: true
-  validates :rating, presence: true, length: {in: 1..5}
+  validates :rating, allow_nil: true, numericality: { greater_than: 0, less_than_or_equal_to: 5}
 
   belongs_to :member
   belongs_to :driver, optional: true
