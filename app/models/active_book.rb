@@ -13,5 +13,5 @@ class ActiveBook < ApplicationRecord
 
   belongs_to :member
   belongs_to :driver, optional: true
-  has_one :order_status, :class_name => "OrderStatus", :foreign_key => "id"
+  belongs_to :order_status
 end
