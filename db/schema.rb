@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_31_171054) do
+ActiveRecord::Schema.define(version: 2018_08_31_171318) do
 
   create_table "active_books", force: :cascade do |t|
     t.integer "member_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2018_08_31_171054) do
     t.integer "order_status_id"
     t.index ["driver_id"], name: "index_active_books_on_driver_id"
     t.index ["member_id"], name: "index_active_books_on_member_id"
+    t.index ["order_status_id"], name: "index_active_books_on_order_status_id"
   end
 
   create_table "book_histories", force: :cascade do |t|
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 2018_08_31_171054) do
     t.integer "order_status_id"
     t.index ["driver_id"], name: "index_book_histories_on_driver_id"
     t.index ["member_id"], name: "index_book_histories_on_member_id"
+    t.index ["order_status_id"], name: "index_book_histories_on_order_status_id"
   end
 
   create_table "driver_details", force: :cascade do |t|
