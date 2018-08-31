@@ -1,6 +1,10 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
+  factory :order_status do
+    status {"Pending"}
+  end
+
   factory :pending, class: OrderStatus do
     status { "Pending" }
   end
