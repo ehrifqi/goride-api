@@ -19,9 +19,13 @@ class Api::V1::MapController < ApplicationController
 
   def get_place_suggestions
     place_query = params[:query]
-    url = URI.parse('https://maps.googleapis.com/maps/api/place/textsearch/json?query=central park&region=id&key=AIzaSyAPx6BKfp1WcSw2cxBwQnaOhObKFfeu-zw')
+    region = params[:region]
+    region ||= "id"
+
+    url = URI.parse("https://maps.googleapis.com/maps/api/place/textsearch/json?query=#{place_query}&region=#{region}&key=AIzaSyAPx6BKfp1WcSw2cxBwQnaOhObKFfeu-zw")
     result = Net::HTTP.get(url)
     result = JSON.parse(result)
+    
     if result["status"] == 'OK'
       place_suggestions = result["results"].map do |place|
         {

@@ -28,5 +28,11 @@ RSpec.describe Api::V1::MapController, type: :controller do
       get 'get_place_suggestions', params: {query: "central park"}
       expect(response_json["place_suggestions"][0]).to include("name", "id", "formatted_address", "lat", "lng")
     end
+
+    it "returns HTTP 400 and a message without query parameter" do
+      get 'get_place_suggestions', params: {query: nil}
+      expect(response.status).to eq(400)
+      expect(response_json).to include("message")
+    end
   end
 end
