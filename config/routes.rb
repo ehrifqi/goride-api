@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
       scope 'map', as: 'map' do
         get 'get_price', to: 'map#get_price'
+        get 'get_place_suggestions', to: 'map#get_place_suggestions'
       end
 
       scope 'active_books', as: 'active_books' do
