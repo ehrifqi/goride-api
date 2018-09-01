@@ -22,10 +22,10 @@ class Api::V1::MapController < ApplicationController
     region = params[:region]
     region ||= "id"
 
-    url = URI.parse("https://maps.googleapis.com/maps/api/place/textsearch/json?query=#{place_query}&region=#{region}&key=AIzaSyAPx6BKfp1WcSw2cxBwQnaOhObKFfeu-zw")
+    url = URI.parse("https://maps.googleapis.com/maps/api/place/textsearch/json?query=#{place_query}&region=#{region}&location=-6.1753924,106.8271528&radius=50000&key=AIzaSyAPx6BKfp1WcSw2cxBwQnaOhObKFfeu-zw")
     result = Net::HTTP.get(url)
     result = JSON.parse(result)
-    
+
     if result["status"] == 'OK'
       place_suggestions = result["results"].map do |place|
         {
