@@ -16,6 +16,12 @@ Rails.application.routes.draw do
       scope 'map', as: 'map' do
         get 'get_price', to: 'map#get_price'
       end
+
+      scope 'active_books', as: 'active_books' do
+        post 'create_active_book', to: 'active_books#create_active_book'
+        get 'get_by_member', to: 'active_books#get_by_member'
+        get 'get_by_driver', to: 'active_books#get_by_driver'
+      end
     end
   end
 end
