@@ -1,4 +1,10 @@
 class Api::V1::ActiveBooksController < ApplicationController
+	before_action except: [
+
+	] do
+		verify_role([Rails.application.secrets.role_member, Rails.application.secrets.role_driver])
+	end
+
   def create_active_book 
   	member_id = params[:member_id]
   	driver_id = params[:driver_id]
@@ -22,7 +28,8 @@ class Api::V1::ActiveBooksController < ApplicationController
   		price: price,
   		from: from,
   		to: to
-  		)
+      )
+
   	if activeBook.valid?
   		activeBook.save
   		render json: {
@@ -36,7 +43,7 @@ class Api::V1::ActiveBooksController < ApplicationController
   def get_by_member
   	member_id = params[:member_id]
 
-  	if params[:member_id].blank?
+  	if !params[:member_id].blank?
   		render json: {
   			active_book: ActiveBook.where("member_id = ?",params[:member_id]),
   			token: regenerate_token

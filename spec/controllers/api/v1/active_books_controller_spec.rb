@@ -62,7 +62,7 @@ RSpec.describe Api::V1::ActiveBooksController, type: :controller do
 
   	it "regenerate a valid token on successful get_by_member" do
   		get "get_by_member", params: {
-  	  	member_id: @member2.id
+  	  	member_id: @member.id
   	  }
   	  expect(response_json).to include("token")
   	end
@@ -82,7 +82,7 @@ RSpec.describe Api::V1::ActiveBooksController, type: :controller do
 
   	it "regenerate a valid token on successful get_by_driver" do
   		get "get_by_driver", params: {
-  	  	member_id: @driver2.id
+  	  	member_id: @driver.id
   	  }
   	  expect(response_json).to include("token")
   	end
