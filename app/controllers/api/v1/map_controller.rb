@@ -10,7 +10,8 @@ class Api::V1::MapController < ApplicationController
 
     begin
       render json: {
-        price: calc_price(distance)
+        price: calc_price(distance),
+        price_with_gopay: calc_price_with_gopay(distance)
       }, status: :ok
     rescue Exception
       render err("Invalid parameters", :bad_request)

@@ -7,9 +7,9 @@ RSpec.describe Api::V1::MapController, type: :controller do
       expect(response.status).to eq(200)
     end
 
-    it "returns price on successful call" do
+    it "returns price and price_with_gopay on successful call" do
       get 'get_price'
-      expect(response_json).to include("price")
+      expect(response_json).to include("price", "price_with_gopay")
     end
   end
 
