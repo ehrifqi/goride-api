@@ -75,14 +75,14 @@ RSpec.describe Api::V1::ActiveBooksController, type: :controller do
   	
   	it "returns HTTP 200 on successful get_by_driver" do
   	  get "get_by_driver", params: {
-  	  	member_id: @driver.id
+  	  	driver_id: @driver.id
   	  }
   	  expect(response.status).to eq(200)
   	end
 
   	it "regenerate a valid token on successful get_by_driver" do
   		get "get_by_driver", params: {
-  	  	member_id: @driver.id
+  	  	driver_id: @driver.id
   	  }
   	  expect(response_json).to include("token")
   	end

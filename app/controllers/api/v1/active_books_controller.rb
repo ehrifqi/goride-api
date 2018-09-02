@@ -43,9 +43,10 @@ class Api::V1::ActiveBooksController < ApplicationController
   def get_by_member
   	member_id = params[:member_id]
 
-  	if !params[:member_id].blank?
+		member = Member.where("id = ?", member_id).first
+		if !params[:member_id].blank? && !member.nil?	
   		render json: {
-  			active_book: ActiveBook.where("member_id = ?",params[:member_id]),
+  			active_book: member.active_book,
   			token: regenerate_token
   		},status: :ok
   	else
@@ -56,9 +57,10 @@ class Api::V1::ActiveBooksController < ApplicationController
   def get_by_driver
   	driver_id = params[:driver_id]
 
-  	if params[:driver_id].blank?
+		driver = Driver.where("id = ?", driver_id).first
+  	if !params[:driver_id].blank? && !driver.nil?
   		render json: {
-  			active_book: ActiveBook.where("driver_id = ?",params[:driver_id]),
+  			active_book: driver.active_book,
   			token: regenerate_token
   		},status: :ok
   	else
