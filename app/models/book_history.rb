@@ -1,6 +1,6 @@
 class BookHistory < ApplicationRecord
   validates :member_id, presence: true
-  validates :driver_id, presence: true
+  validates :driver_id, presence: false
   validates :order_status_id, presence: true
 
   validates :src_lat, presence: true
