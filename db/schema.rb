@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_31_171318) do
+ActiveRecord::Schema.define(version: 2018_09_03_184425) do
 
   create_table "active_books", force: :cascade do |t|
     t.integer "member_id"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2018_08_31_171318) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order_status_id"
+    t.integer "price_with_gopay"
+    t.decimal "distance"
     t.index ["driver_id"], name: "index_active_books_on_driver_id"
     t.index ["member_id"], name: "index_active_books_on_member_id"
     t.index ["order_status_id"], name: "index_active_books_on_order_status_id"
@@ -44,6 +46,8 @@ ActiveRecord::Schema.define(version: 2018_08_31_171318) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order_status_id"
+    t.integer "price_with_gopay"
+    t.decimal "distance"
     t.index ["driver_id"], name: "index_book_histories_on_driver_id"
     t.index ["member_id"], name: "index_book_histories_on_member_id"
     t.index ["order_status_id"], name: "index_book_histories_on_order_status_id"
