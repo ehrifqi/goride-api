@@ -26,7 +26,9 @@ RSpec.describe Api::V1::ActiveBooksController, type: :controller do
   		dest_long: @active_book.dest_long,
   		price: @active_book.price,
   		from: @active_book.from,
-  		to: @active_book.to
+			to: @active_book.to,
+			distance: @active_book.distance,
+			price_with_gopay: @active_book.price_with_gopay
   	  }
   	  expect(response.status).to eq(200)
   	end
@@ -42,7 +44,9 @@ RSpec.describe Api::V1::ActiveBooksController, type: :controller do
   		dest_long: @active_book.dest_long,
   		price: @active_book.price,
   		from: @active_book.from,
-  		to: @active_book.to
+			to: @active_book.to,
+			distance: @active_book.distance,
+			price_with_gopay: @active_book.price_with_gopay
   	  }
   	  expect(response_json).to include("token")
   	end

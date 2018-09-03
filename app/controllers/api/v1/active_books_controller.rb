@@ -15,7 +15,9 @@ class Api::V1::ActiveBooksController < ApplicationController
   	dest_long = params[:dest_long]
   	price = params[:price]
   	from = params[:from]
-  	to = params[:to]
+		to = params[:to]
+		distance = params[:distance]
+		price_with_gopay = params[:price_with_gopay]
 
   	activeBook = ActiveBook.new(
   		member_id: member_id,
@@ -27,7 +29,9 @@ class Api::V1::ActiveBooksController < ApplicationController
   		dest_long: dest_long,
   		price: price,
   		from: from,
-  		to: to
+			to: to,
+			distance: distance,
+			price_with_gopay: price_with_gopay
       )
 
   	if activeBook.valid?

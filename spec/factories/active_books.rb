@@ -9,5 +9,7 @@ FactoryGirl.define do
     price {Faker::Number.number(5)}
     from {Faker::Address.street_name}
     to {Faker::Address.street_name}
+    distance {Faker::Number.decimal(2,1)}
+    price_with_gopay {Faker::Number.number(5)}
   end
 end

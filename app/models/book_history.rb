@@ -11,6 +11,7 @@ class BookHistory < ApplicationRecord
   validates :from, presence: true
   validates :to, presence: true
   validates :rating, allow_nil: true, numericality: { greater_than: 0, less_than_or_equal_to: 5}
+  validates :distance, presence: true
 
   belongs_to :member
   belongs_to :driver, optional: true

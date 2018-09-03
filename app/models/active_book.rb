@@ -10,6 +10,7 @@ class ActiveBook < ApplicationRecord
   validates :price, presence: true
   validates :from, presence: true
   validates :to, presence: true
+  validates :distance, presence: true
 
   belongs_to :member
   belongs_to :driver, optional: true
