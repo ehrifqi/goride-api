@@ -7,7 +7,7 @@ module MapHelper
 
   def calc_price(distance_in_km)
     begin
-      ceil(distance_in_km.to_f * PRICE_PER_KM)
+      ceil((distance_in_km.to_f * PRICE_PER_KM) / 1000) * 1000
     rescue
 
     end
@@ -15,7 +15,7 @@ module MapHelper
 
   def calc_price_with_gopay(distance_in_km)
     begin
-      ceil((distance_in_km.to_f * PRICE_PER_KM)*GO_PAY_MULTIPLIER)
+      ceil(((distance_in_km.to_f * PRICE_PER_KM) * GO_PAY_MULTIPLIER) / 1000) * 1000
     rescue
 
     end

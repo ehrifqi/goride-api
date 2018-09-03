@@ -46,4 +46,26 @@ RSpec.describe ActiveBook, type: :model do
     @active_book.driver = nil;
     expect(@active_book).to be_valid
   end
+
+  it "is invalid without driver and active_book" do
+    @driver.id = nil
+    @active_book.id = nil
+    expect(@active_book).to be_valid
+  end
+
+  it "is invalid without order_status and active_book" do
+    @order_status.id = nil
+    @active_book.id = nil
+    expect(@active_book).to be_valid
+  end
+
+  it "is invalid with order_status_id more than 6" do
+    @active_book.order_status_id = 7
+    expect(@active_book).to_not be_valid
+  end
+
+  it "is invalid with order_status_id less than 1" do
+    @active_book.order_status_id = 0
+    expect(@active_book).to_not be_valid
+  end
 end

@@ -22,6 +22,9 @@ Rails.application.routes.draw do
         post 'create_active_book', to: 'active_books#create_active_book'
         get 'get_by_member', to: 'active_books#get_by_member'
         get 'get_by_driver', to: 'active_books#get_by_driver'
+        patch 'set_driver', to: 'active_books#set_driver'
+        patch 'set_status', to: 'active_books#set_status'
+        patch 'move_to_history', to: 'active_books#move_to_history'
       end
     end
   end

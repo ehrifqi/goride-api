@@ -67,4 +67,69 @@ class Api::V1::ActiveBooksController < ApplicationController
   		render err("Id Nil", :ok)
   	end
   end
+
+  def set_driver
+    id = params[:id]
+    driver_id = params[:driver_id]
+
+    active_book = ActiveBook.where("id = ?", id).first
+    driver = Driver.where("id = ?", driver_id).first
+    if !params[:id].blank? && !active_book.nil? && !params[:driver_id].blank? && !driver.nil?
+      active_book.driver_id = driver_id
+      active_book.save
+      render json: {
+        active_book: active_book,
+        token: regenerate_token
+      },status: :ok
+    else
+      render err("Id Nil", :ok)
+    end  
+  end
+
+  def set_status
+    id = params[:id]
+    order_status_id = params[:order_status_id]
+
+    active_book = ActiveBook.where("id = ?", id).first
+    order_status = OrderStatus.where("id = ?", order_status_id).first
+    if !params[:id].blank? && !active_book.nil? && !params[:order_status_id].blank? && !order_status.nil?
+      active_book.order_status_id = order_status_id
+      active_book.save
+      render json: {
+        active_book: active_book,
+        token: regenerate_token
+      },status: :ok
+    else
+      render err("Id Nil", :ok)
+    end
+  end
+
+  def move_to_history
+    id = params[:id]
+    order_status_id = params[:order_status_id]
+
+    active_book = ActiveBook.where("id = ?", id).first
+    order_status = OrderStatus.where("id = ?", order_status_id).first
+    if !params[:id].blank? && !active_book.nil? && !params[:order_status_id].blank? && !order_status.nil?
+      book_history = BookHistory.new(
+        member_id: active_book.member_id,
+        driver_id: active_book.driver_id,
+        src_lat: active_book.src_lat,
+        src_long: active_book.src_long,
+        dest_lat: active_book.dest_lat,
+        dest_long: active_book.dest_long,
+        price: active_book.price,
+        from: active_book.from,
+        to: active_book.to,
+        rating: 0,
+        order_status_id: order_status_id
+      )
+      book_history.save
+      render json: {
+        token: regenerate_token
+      },status: :ok
+    else
+      render err("Id Nil", :ok)
+    end
+  end
 end
