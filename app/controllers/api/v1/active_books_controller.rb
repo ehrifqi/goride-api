@@ -125,15 +125,22 @@ class Api::V1::ActiveBooksController < ApplicationController
         price: active_book.price,
         from: active_book.from,
         to: active_book.to,
+        distance: active_book.distance,
+        price_with_gopay: active_book.price_with_gopay,
         rating: 0,
         order_status_id: order_status_id
       )
-      book_history.save
-      render json: {
-        token: regenerate_token
-      },status: :ok
+
+      if book_history.valid?
+        book_history.save
+        render json: {
+          token: regenerate_token
+        },status: :ok
+      else
+        render err("Invalid parameters", :ok)
+      end
     else
-      render err("Id Nil", :ok)
+      render err("Id Nil", :bad_request)
     end
   end
 end
