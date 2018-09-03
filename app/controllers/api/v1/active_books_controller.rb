@@ -133,6 +133,7 @@ class Api::V1::ActiveBooksController < ApplicationController
 
       if book_history.valid?
         book_history.save
+        active_book.destroy
         render json: {
           token: regenerate_token
         },status: :ok
