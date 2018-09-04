@@ -42,9 +42,9 @@ RSpec.describe BookHistory, type: :model do
     expect(@book_history).to_not be_valid
   end
 
-  it "is invalid without a driver" do
+  it "is is valid without a driver" do
     @book_history.driver = nil;
-    expect(@book_history).to_not be_valid
+    expect(@book_history).to be_valid
   end
 
   it "is valid without a rating" do
