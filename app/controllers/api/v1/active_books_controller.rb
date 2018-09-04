@@ -80,6 +80,7 @@ class Api::V1::ActiveBooksController < ApplicationController
     driver = Driver.where("id = ?", driver_id).first
     if !params[:id].blank? && !active_book.nil? && !params[:driver_id].blank? && !driver.nil?
       active_book.driver_id = driver_id
+      active_book.order_status_id = 2 #accepted
       active_book.save
       render json: {
         active_book: active_book,
