@@ -26,6 +26,10 @@ Rails.application.routes.draw do
         patch 'set_status', to: 'active_books#set_status'
         patch 'move_to_history', to: 'active_books#move_to_history'
       end
+
+      scope 'members', as: 'members' do
+        get 'show', to: 'members#show'
+      end
     end
   end
 end
