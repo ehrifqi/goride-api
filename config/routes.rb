@@ -30,6 +30,14 @@ Rails.application.routes.draw do
       scope 'members', as: 'members' do
         get 'show', to: 'members#show'
       end
+
+      scope 'drivers', as: 'drivers' do
+        get 'show', to: 'drivers#show'
+      end
+
+      scope 'driver_details', as: 'driver_details' do
+        get 'show', to: 'driver_details#show'
+      end
     end
   end
 end
