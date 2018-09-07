@@ -27,4 +27,25 @@ class Api::V1::BookHistoriesController < ApplicationController
       }, status: :ok
     end
   end
+
+  def update_rating 
+    id = params[:id]
+    rating = params[:rating]
+
+    if(id === nil || rating === nil)
+      render err("Invalid parameters", :bad_request)
+    end
+
+    rating = rating.to_i
+    if(rating < 0 || rating > 5)
+      render err("Invalid rating", :bad_request)
+    end
+
+    book_history = BookHistory.where("id = ?", id).first
+    book_history.rating = rating
+    book_history.save
+    render json: {
+      token: regenerate_token
+    }, status: :ok
+  end
 end

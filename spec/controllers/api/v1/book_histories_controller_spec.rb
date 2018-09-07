@@ -51,4 +51,20 @@ RSpec.describe Api::V1::BookHistoriesController, type: :controller do
       expect(response.status).to eq(400)
     end
   end     
+
+  describe '/PATCH update_rating' do
+    before :each do |test|
+      merge_header(auth_headers(@member.id,Rails.application.secrets.role_member)) unless test.metadata[:logged_out]
+    end
+
+    it 'should return HTTP OK' do
+      patch 'update_rating', params: {id: @pending_book_histories[0]["id"], rating: 5}
+      expect(response.status).to eq(200)
+    end
+
+    it "should return a token" do
+      patch 'update_rating', params: {id: @pending_book_histories[0]["id"], rating: 5}
+      expect(response_json).to include("token")
+    end
+  end
 end
