@@ -31,6 +31,10 @@ Rails.application.routes.draw do
         get 'show', to: 'members#show'
       end
 
+      scope 'book_histories', as: 'book_histories' do
+        get 'member_histories', to: 'book_histories#member_histories'
+      end
+
       scope 'drivers', as: 'drivers' do
         get 'show', to: 'drivers#show'
       end
