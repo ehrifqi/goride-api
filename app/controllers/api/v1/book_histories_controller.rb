@@ -28,6 +28,29 @@ class Api::V1::BookHistoriesController < ApplicationController
     end
   end
 
+  def driver_histories
+    order_status_id = params[:order_status_id]
+    driver_id = params[:driver_id]
+
+    if !driver_id
+      render err("driver_id is mandatory", :bad_request)
+    end
+
+    driver = Driver.where("id = ?", driver_id).first
+    if driver
+      book_histories = driver.book_history
+      if order_status_id
+        book_histories = book_histories.select do |book_history|
+          book_history.order_status_id == order_status_id.to_i
+        end
+      end
+      render json: {
+        book_histories: book_histories,
+        token: regenerate_token
+      }, status: :ok
+    end
+  end
+
   def update_rating 
     id = params[:id]
     rating = params[:rating]

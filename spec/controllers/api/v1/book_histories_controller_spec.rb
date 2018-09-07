@@ -52,6 +52,37 @@ RSpec.describe Api::V1::BookHistoriesController, type: :controller do
     end
   end     
 
+  describe '/GET driver_histories' do
+    before :each do |test|
+      merge_header(auth_headers(@driver.id,Rails.application.secrets.role_driver)) unless test.metadata[:logged_out]
+    end
+
+    it "should respond with HTTP OK" do
+      get 'driver_histories', params: {driver_id: @driver.id}
+      expect(response.status).to eq(200)
+    end
+
+    it "should return JSON with key {book_histories, token}" do
+      get 'driver_histories', params: {driver_id: @driver.id}
+      expect(response_json).to include("book_histories", "token")
+    end
+
+    it "should return all member's book_histories" do
+      get 'driver_histories', params: {driver_id: @driver.id}
+      expect(response_json["book_histories"].length).to eq(@pending_book_histories.length + @accepted_book_histories.length)
+    end
+
+    it "should return all book_histories with set order_status_id if parameter order_status_id is sent" do
+      get 'driver_histories', params: {driver_id: @member.id, order_status_id: @pending_order_status.id}
+      expect(response_json["book_histories"].length).to eq(@pending_book_histories.length)
+    end
+
+    it "should respond with HTTP BAD_REQUEST if p arameter member_id is not sent" do
+      get 'driver_histories', params: {}
+      expect(response.status).to eq(400)
+    end
+  end     
+
   describe '/PATCH update_rating' do
     before :each do |test|
       merge_header(auth_headers(@member.id,Rails.application.secrets.role_member)) unless test.metadata[:logged_out]

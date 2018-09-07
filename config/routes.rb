@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
       scope 'book_histories', as: 'book_histories' do
         get 'member_histories', to: 'book_histories#member_histories'
+        get 'driver_histories', to: 'book_histories#driver_histories'
         patch 'update_rating', to: 'book_histories#update_rating'
       end
 
