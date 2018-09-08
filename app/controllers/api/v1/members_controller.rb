@@ -9,7 +9,7 @@ class Api::V1::MembersController < ApplicationController
     id = params[:id]
     member = Member.where("id = ?", id).first
     if member
-      render json: {
+      render json: { 
         member: member,
         token: regenerate_token
       }, status: :ok

@@ -90,5 +90,35 @@ RSpec.describe Api::V1::ActiveBooksController, type: :controller do
   	  }
   	  expect(response_json).to include("token")
   	end
-  end
+	end
+	
+	describe '/DELETE move_to_history' do
+		before :each do |test|
+  	  merge_header(auth_headers(@driver.id,Rails.application.secrets.role_member)) unless test.metadata[:logged_out]
+		end
+		
+		it 'should return HTTP OK' do
+			@active_book.save
+			length_before_delete = ActiveBook.all.length
+
+			delete 'remove_active_book', params: {id: @active_book["id"]}
+			expect(response.status).to eq(200)
+		end
+
+		it 'should delete an activeBook' do
+			@active_book.save
+			length_before_delete = ActiveBook.all.length
+
+			delete 'remove_active_book', params: {id: @active_book["id"]}
+			expect(ActiveBook.all.length).to eq(length_before_delete - 1)
+		end
+
+		it 'should render a json with key {token}' do
+			@active_book.save
+			length_before_delete = ActiveBook.all.length
+
+			delete 'remove_active_book', params: {id: @active_book["id"]}
+			expect(response_json).to include("token")
+		end
+	end
 end

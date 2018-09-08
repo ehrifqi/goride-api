@@ -145,4 +145,15 @@ class Api::V1::ActiveBooksController < ApplicationController
       render err("Id Nil", :bad_request)
     end
   end
+
+  def remove_active_book 
+    id = params[:id]
+    active_book = ActiveBook.where("id = ?", id).first
+    if !active_book.blank?
+      active_book.destroy
+      render json: {
+        token: regenerate_token
+      }, status: :ok
+    end
+  end
 end

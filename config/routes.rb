@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         patch 'set_driver', to: 'active_books#set_driver'
         patch 'set_status', to: 'active_books#set_status'
         patch 'move_to_history', to: 'active_books#move_to_history'
+        delete 'remove_active_book', to: 'active_books#remove_active_book'
       end
 
       scope 'members', as: 'members' do
