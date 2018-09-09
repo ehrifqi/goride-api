@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
       scope 'members', as: 'members' do
         get 'show', to: 'members#show'
+        patch 'update', to: 'members#update'
       end
 
       scope 'book_histories', as: 'book_histories' do
