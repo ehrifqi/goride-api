@@ -28,4 +28,74 @@ RSpec.describe Api::V1::DriversController, type: :controller do
       expect(driver["phone_number"]).to eq(@driver.phone_number)
     end
   end
+
+  describe '/PATCH update' do
+    before :each do |test|
+      merge_header(auth_headers(@driver.id,Rails.application.secrets.role_driver)) unless test.metadata[:logged_out]
+    end
+
+    it 'should return HTTP OK' do
+      patch 'update', params: {
+        id: @driver.id,
+        email: @driver.email,
+        password: @driver.password,
+        full_name: "Mamat Kerok",
+        birthdate: "12-12-1990",
+        license_plate: "B 123 HAH",
+        rating: 3,
+        phone_number: "087667801672",
+        license_number: "109827361092",
+        ktp_number: "1982530723917401",
+        address: "Jalan Menceng Raya 5",
+        income: 12000
+      }
+      expect(response.status).to eq(200)
+    end
+
+    it 'should return JSON with key {driver, token}' do
+      patch 'update', params: {
+        id: @driver.id,
+        email: @driver.email,
+        password: @driver.password,
+        full_name: "Mamat Kerok",
+        birthdate: "12-12-1990",
+        license_plate: "B 123 HAH",
+        rating: 3,
+        phone_number: "087667801672",
+        license_number: "109827361092",
+        ktp_number: "1982530723917401",
+        address: "Jalan Menceng Raya 5",
+        income: 12000
+      }
+      expect(response_json).to include("driver", "token")
+    end
+
+    it 'should update new data with the correct id' do
+      patch 'update', params: {
+        id: @driver.id,
+        email: @driver.email,
+        password: @driver.password,
+        full_name: "Mamat Kerok",
+        birthdate: "12-12-1990",
+        license_plate: "B 123 HAH",
+        rating: 3.2,
+        phone_number: "087667801672",
+        license_number: "109827361092",
+        ktp_number: "1982530723917401",
+        address: "Jalan Menceng Raya 5",
+        income: 12000
+      }
+      driver = response_json["driver"]
+      expect(driver["id"]).to eq(@driver.id)
+      expect(driver["full_name"]).to eq("Mamat Kerok")
+      expect(driver["birthdate"]).to eq("1990-12-12T00:00:00.000Z")
+      expect(driver["license_plate"]).to eq("B 123 HAH")
+      expect(driver["rating"]).to eq("3.2")
+      expect(driver["phone_number"]).to eq("087667801672")
+      expect(driver["license_number"]).to eq("109827361092")
+      expect(driver["ktp_number"]).to eq("1982530723917401")
+      expect(driver["address"]).to eq("Jalan Menceng Raya 5")
+      expect(driver["income"]).to eq(12000)
+    end
+  end
 end

@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
       scope 'drivers', as: 'drivers' do
         get 'show', to: 'drivers#show'
+        patch 'update', to: 'drivers#update'
       end
 
       scope 'driver_details', as: 'driver_details' do
