@@ -3,11 +3,12 @@ require 'rails_helper'
 RSpec.describe Api::V1::ActiveBooksController, type: :controller do
   before :each do
     @member = create(:member)
-    @member2 = build(:member)
+    @member2 = create(:member)
     @driver = create(:driver)
-    @driver2 = build(:driver)
+    @driver2 = create(:driver)
     @order_status = create(:order_status, id: 1)
     @active_book = build(:active_book, member: @member, driver: @driver, order_status: @order_status)
+    @active_book2 = create(:active_book, member: @member, driver: @driver, order_status: @order_status)
   end
 
   describe "/POST create_active_book" do
@@ -91,6 +92,39 @@ RSpec.describe Api::V1::ActiveBooksController, type: :controller do
   	  expect(response_json).to include("token")
   	end
 	end
+
+  describe '/PATCH set_driver' do
+    before :each do |test|
+      merge_header(auth_headers(@driver.id,Rails.application.secrets.role_member)) unless test.metadata[:logged_out]
+    end
+
+    it 'should return HTTP OK' do
+      patch "set_driver", params: {
+        id: @active_book2.id,
+        driver_id: @driver2.id
+      }
+      expect(response.status).to eq(200)
+    end
+
+    it 'should render a json with key {active_book, token}' do
+      patch "set_driver", params: {
+        id: @active_book2.id,
+        driver_id: @driver2.id
+      }
+      expect(response_json).to include("active_book", "token")
+    end
+
+    it 'should set new driver_id and order_status_id equals to 2 with the specified id' do
+      patch "set_driver", params: {
+        id: @active_book2.id,
+        driver_id: @driver2.id
+      }
+      active_book = response_json["active_book"]
+      expect(active_book["id"]).to eq(@active_book2.id)
+      expect(active_book["driver_id"]).to eq(@driver2.id)
+      expect(active_book["order_status_id"]).to eq(2)
+    end
+  end
 	
 	describe '/DELETE move_to_history' do
 		before :each do |test|
