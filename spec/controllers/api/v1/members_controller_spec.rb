@@ -71,7 +71,6 @@ RSpec.describe Api::V1::MembersController, type: :controller do
       expect(member["id"]).to eq(@member.id)
       expect(member["full_name"]).to eq("Bambang Subadja")
       expect(member["phone_number"]).to eq("087889651726")
-      expect(member["go_point_value"]).to eq(150)
     end
   end
 end

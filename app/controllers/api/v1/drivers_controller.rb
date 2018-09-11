@@ -21,30 +21,24 @@ class Api::V1::DriversController < ApplicationController
   def update
     id = params[:id]
     email = params[:email]
-    password = params[:password]
     full_name = params[:full_name]
     birthdate = params[:birthdate]
     license_plate = params[:license_plate]
-    rating = params[:rating]
     phone_number = params[:phone_number]
     license_number = params[:license_number]
     ktp_number = params[:ktp_number]
     address = params[:address]
-    income = params[:income]
 
     driver = Driver.where("id = ?", id).first
     if driver
-      driver.update(email: email)
-      driver.update(password: password)
-      driver.update(full_name: full_name)
-      driver.update(birthdate: birthdate)
-      driver.update(license_plate: license_plate)
-      driver.update(rating: rating)
-      driver.update(phone_number: phone_number)
-      driver.update(license_number: license_number)
-      driver.update(ktp_number: ktp_number)
-      driver.update(address: address)
-      driver.update(income: income)
+      driver.email = email
+      driver.full_name = full_name
+      driver.birthdate = birthdate
+      driver.license_plate = license_plate
+      driver.phone_number = phone_number
+      driver.license_number = license_number
+      driver.ktp_number = ktp_number
+      driver.address = address
       driver.save
 
       render json: {

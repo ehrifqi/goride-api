@@ -20,20 +20,20 @@ RSpec.describe Member, type: :model do
     expect(@member2).to_not be_valid
   end
 
-  it "is invalid without a password" do
-    @member1.password = nil
-    expect(@member1).to_not be_valid
-  end
+  # it "is invalid without a password" do
+  #   @member1.password = nil
+  #   expect(@member1).to_not be_valid
+  # end
 
-  it "is invalid with password length lower than 6 or greater than 20" do
-    @member1.password = "short"
-    expect(@member1).to_not be_valid
-  end
+  # it "is invalid with password length lower than 6 or greater than 20" do
+  #   @member1.password = "short"
+  #   expect(@member1).to_not be_valid
+  # end
 
-  it "is valid with password length between 6 and 20" do
-    @member1.password = "validpass"
-    expect(@member1).to be_valid
-  end
+  # it "is valid with password length between 6 and 20" do
+  #   @member1.password = "validpass"
+  #   expect(@member1).to be_valid
+  # end
 
   it "is invalid without a full_name" do
     @member1.full_name = nil

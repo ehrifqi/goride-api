@@ -90,12 +90,10 @@ RSpec.describe Api::V1::DriversController, type: :controller do
       expect(driver["full_name"]).to eq("Mamat Kerok")
       expect(driver["birthdate"]).to eq("1990-12-12T00:00:00.000Z")
       expect(driver["license_plate"]).to eq("B 123 HAH")
-      expect(driver["rating"]).to eq("3.2")
       expect(driver["phone_number"]).to eq("087667801672")
       expect(driver["license_number"]).to eq("109827361092")
       expect(driver["ktp_number"]).to eq("1982530723917401")
       expect(driver["address"]).to eq("Jalan Menceng Raya 5")
-      expect(driver["income"]).to eq(12000)
     end
   end
 end

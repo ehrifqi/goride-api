@@ -21,18 +21,14 @@ class Api::V1::MembersController < ApplicationController
   def update
     id = params[:id]
     email = params[:email]
-    password = params[:password]
     full_name = params[:full_name]
     phone_number = params[:phone_number]
-    go_point_value = params[:go_point_value]
 
     member = Member.where("id = ?", id).first
     if member
       member.update(email: email)
-      member.update(password: password)
       member.update(full_name: full_name)
       member.update(phone_number: phone_number)
-      member.update(go_point_value: go_point_value)
       member.save
       
       render json: { 

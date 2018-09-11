@@ -19,20 +19,20 @@ RSpec.describe Driver, type: :model do
     expect(@driver2).to_not be_valid
   end
 
-  it "is invalid without a password" do
-    @driver1.password = nil
-    expect(@driver1).to_not be_valid
-  end
+  # it "is invalid without a password" do
+  #   @driver1.password = nil
+  #   expect(@driver1).to_not be_valid
+  # end
   
-  it "is invalid with password length lower than 6 or greater than 20" do
-    @driver1.password = "short"
-    expect(@driver1).to_not be_valid
-  end
+  # it "is invalid with password length lower than 6 or greater than 20" do
+  #   @driver1.password = "short"
+  #   expect(@driver1).to_not be_valid
+  # end
 
-  it "is valid with password length between 6 and 20" do
-    @driver1.password = "validpass"
-    expect(@driver1).to be_valid
-  end
+  # it "is valid with password length between 6 and 20" do
+  #   @driver1.password = "validpass"
+  #   expect(@driver1).to be_valid
+  # end
 
   it "is invalid without a full_name" do
     @driver1.full_name = nil
