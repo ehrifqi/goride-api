@@ -7,6 +7,7 @@ RSpec.describe Api::V1::ActiveBooksController, type: :controller do
     @driver = create(:driver)
     @driver2 = create(:driver)
     @order_status = create(:order_status, id: 1)
+    @order_status2 = create(:order_status, id: 5, status: 'Canceled by Driver')
     @active_book = build(:active_book, member: @member, driver: @driver, order_status: @order_status)
     @active_book2 = create(:active_book, member: @member, driver: @driver, order_status: @order_status)
   end
@@ -123,6 +124,38 @@ RSpec.describe Api::V1::ActiveBooksController, type: :controller do
       expect(active_book["id"]).to eq(@active_book2.id)
       expect(active_book["driver_id"]).to eq(@driver2.id)
       expect(active_book["order_status_id"]).to eq(2)
+    end
+  end
+
+  describe '/PATCH set_status' do
+    before :each do |test|
+      merge_header(auth_headers(@driver.id,Rails.application.secrets.role_member)) unless test.metadata[:logged_out]
+    end
+
+    it 'should return HTTP OK' do
+      patch "set_status", params: {
+        id: @active_book2.id,
+        order_status_id: 5
+      }
+      expect(response.status).to eq(200)
+    end
+    
+    it 'should render a json with key {active_book, token}' do
+      patch "set_status", params: {
+        id: @active_book2.id,
+        order_status_id: 5
+      }
+      expect(response_json).to include("active_book", "token")
+    end
+
+    it 'should set new order_status_id into the specified id' do
+      patch "set_status", params: {
+        id: @active_book2.id,
+        order_status_id: 5
+      }
+      active_book = response_json["active_book"]
+      expect(active_book["id"]).to eq(@active_book2.id)
+      expect(active_book["order_status_id"]).to eq(5)
     end
   end
 	
